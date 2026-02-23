@@ -76,7 +76,7 @@ OrdersModel.init({
     }
 }, {
     sequelize: DB,
-    tableName: "Orders",
+    tableName: "orders",
     timestamps: false
 })
 

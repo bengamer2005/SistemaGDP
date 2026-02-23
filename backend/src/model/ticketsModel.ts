@@ -48,7 +48,7 @@ TicketsModel.init({
     }
 }, {
     sequelize: DB,
-    tableName: "Tickets",
+    tableName: "tickets",
     timestamps: false
 })
 

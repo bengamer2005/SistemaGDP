@@ -3,7 +3,7 @@ import DB from "../config/DBconfig"
 
 // atributos que tiene la tabla DetectedFiles
 export interface DetectedFilesAttributes {
-    detected_fileId: number,
+    detected_file_id: number,
     file_name: string,
     file_path: string,
     processed: number,
@@ -12,11 +12,11 @@ export interface DetectedFilesAttributes {
 }
 
 // atributo que es opcional al momento de crear un nuevo DetectedFiles
-export interface DetectedFilesCreationAttributes extends Optional<DetectedFilesAttributes, "detected_fileId" | "file_name" | "file_path" | "processed_at" | "processed"> {}
+export interface DetectedFilesCreationAttributes extends Optional<DetectedFilesAttributes, "detected_file_id" | "file_name" | "file_path" | "processed_at" | "processed"> {}
 
 // modelo tipado de DetectedFiles
 class DetectedFilesModel extends Model<DetectedFilesAttributes, DetectedFilesCreationAttributes> implements DetectedFilesAttributes {
-    public detected_fileId!: number
+    public detected_file_id!: number
     public file_name!: string
     public file_path!: string
     public processed!: number
@@ -26,7 +26,7 @@ class DetectedFilesModel extends Model<DetectedFilesAttributes, DetectedFilesCre
 
 // inicializar el modelo con sus atributos y opciones
 DetectedFilesModel.init({
-    detected_fileId: {
+    detected_file_id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true
@@ -52,7 +52,7 @@ DetectedFilesModel.init({
     }
 }, {
     sequelize: DB,
-    tableName: "Clients",
+    tableName: "detected_file",
     timestamps: false
 })
 

@@ -33,7 +33,7 @@ ProductsPerOrderModel.init({
     }
 }, {
     sequelize: DB,
-    tableName: "ProductsPerOrder",
+    tableName: "products_per_order",
     timestamps: false
 })
 

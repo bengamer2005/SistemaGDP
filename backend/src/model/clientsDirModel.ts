@@ -98,7 +98,7 @@ ClientsDirModel.init({
     }
 } , {
     sequelize: DB,
-    tableName: "ClientsDir",
+    tableName: "clients_dir",
     timestamps: false
 })
 

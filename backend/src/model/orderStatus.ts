@@ -32,7 +32,7 @@ OrdersStatusModel.init({
     }
 }, {
     sequelize: DB,
-    tableName: "OrderStatus",
+    tableName: "order_status",
     timestamps: false
 })
 

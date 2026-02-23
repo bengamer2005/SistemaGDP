@@ -56,7 +56,7 @@ OrderStatusHistoryModel.init({
     }
 }, {
     sequelize: DB,
-    tableName: "OrderStatusHistory",
+    tableName: "order_status_history",
     timestamps: false
 })
 

@@ -33,6 +33,6 @@ RolesModel.init({
     }
 }, {
     sequelize: DB,
-    tableName: "Roles",
+    tableName: "roles",
     timestamps: false
 })
