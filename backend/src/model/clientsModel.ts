@@ -3,32 +3,32 @@ import DB from "../config/DBconfig"
 
 // atributos que tiene la tabla Clients
 export interface ClientsAttributes {
-    clientsId: number,
+    clients_id: number,
     name: string,
     active: number,
-    createdBy: number,
-    createdAt: Date,
-    updatedBy: number,
-    updatedAt: Date
+    created_by: number,
+    created_at: Date,
+    updated_by: number,
+    updated_at: Date
 }
 
 // atributo que es opcional al momento de crear un nuevo Clients
-export interface ClientsCreationAttributes extends Optional<ClientsAttributes, "clientsId" | "updatedBy" | "updatedAt"> {}
+export interface ClientsCreationAttributes extends Optional<ClientsAttributes, "clients_id" | "created_at" | "updated_by" | "updated_at"> {}
 
 // modelo tipado de Clients
 class ClientsModel extends Model<ClientsAttributes, ClientsCreationAttributes> implements ClientsAttributes {
-    public clientsId!: number
+    public clients_id!: number
     public name!: string
     public active!: number
-    public createdBy!: number
-    public createdAt!: Date
-    public updatedBy!: number
-    public updatedAt!: Date
+    public created_by!: number
+    public created_at!: Date
+    public updated_by!: number
+    public updated_at!: Date
 }
 
 // inicializar el modelo con sus atributos y opciones
 ClientsModel.init({
-    clientsId: {
+    clients_id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true
@@ -39,23 +39,23 @@ ClientsModel.init({
     active: {
         type: DataTypes.INTEGER
     },
-    createdBy: {
+    created_by: {
         type: DataTypes.INTEGER
     },
-    createdAt: {
+    created_at: {
         type: DataTypes.DATE
     },
-    updatedBy: {
+    updated_by: {
         type: DataTypes.INTEGER,
         allowNull: true
     },
-    updatedAt: {
+    updated_at: {
         type: DataTypes.DATE,
         allowNull: true
     }
 }, {
     sequelize: DB,
-    tableName: "Clients",
+    tableName: "clients",
     timestamps: false
 })
 
