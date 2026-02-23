@@ -58,7 +58,7 @@ ClientsTelModel.init({
 
 }, {
     sequelize: DB,
-    tableName: "ClientsTel",
+    tableName: "clients_tel",
     timestamps: false
 })
 

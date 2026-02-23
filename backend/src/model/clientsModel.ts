@@ -43,7 +43,8 @@ ClientsModel.init({
         type: DataTypes.INTEGER
     },
     created_at: {
-        type: DataTypes.DATE
+        type: DataTypes.DATE,
+        defaultValue: DataTypes.NOW
     },
     updated_by: {
         type: DataTypes.INTEGER,
