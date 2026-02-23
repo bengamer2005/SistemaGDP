@@ -3,38 +3,38 @@ import DB from "../config/DBconfig"
 
 // atributos que tiene la tabla de ClientsTel
 export interface ClientsTelAttributes {
-    clientsTelId: number,
-    clientsId: number,
+    clients_tel_id: number,
+    clients_id: number,
     telephone: string,
     active: number,
-    createdBy: number,
-    createdAt: Date,
-    updatedBy: number,
-    updatedAt: Date
+    created_by: number,
+    created_at: Date,
+    updated_by: number,
+    updated_at: Date
 }
 
 // atributo que es opcional al momento de crear un nuevo ClientsTel
-export interface ClientsTelCreationAttributes extends Optional<ClientsTelAttributes, "clientsTelId" | "updatedAt" | "updatedBy"> {}
+export interface ClientsTelCreationAttributes extends Optional<ClientsTelAttributes, "clients_tel_id" | "updated_at" | "updated_by"> {}
 
 // modelo tipado de ClientsTel
 class ClientsTelModel extends Model<ClientsTelAttributes, ClientsTelCreationAttributes> implements ClientsTelAttributes {
-    public clientsTelId!: number
-    public clientsId!: number
+    public clients_tel_id!: number
+    public clients_id!: number
     public telephone!: string
     public active!: number
-    public createdBy!: number
-    public createdAt!: Date
-    public updatedBy!: number
-    public updatedAt!: Date
+    public created_by!: number
+    public created_at!: Date
+    public updated_by!: number
+    public updated_at!: Date
 }
 
 ClientsTelModel.init({
-    clientsTelId: {
+    clients_tel_id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true
     },
-    clientsId: {
+    clients_id: {
         type: DataTypes.INTEGER
     },
     telephone: {
@@ -43,16 +43,16 @@ ClientsTelModel.init({
     active: {
         type: DataTypes.INTEGER
     },
-    createdBy: {
+    created_by: {
         type: DataTypes.INTEGER
     },
-    createdAt: {
+    created_at: {
         type: DataTypes.DATE
     },
-    updatedBy: {
+    updated_by: {
         type: DataTypes.INTEGER
     },
-    updatedAt: {
+    updated_at: {
         type: DataTypes.DATE
     }
 

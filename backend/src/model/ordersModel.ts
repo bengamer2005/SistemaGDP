@@ -3,74 +3,74 @@ import DB from "../config/DBconfig"
 
 // atributos que tiene la tabla Orders
 export interface OrdersAttributes {
-    ordersId: number,
-    clientsId: number,
-    orderDate: Date,
-    deliveryDate: Date,
-    totalAmount: number,
+    orders_id: number,
+    clients_id: number,
+    order_date: Date,
+    delivery_date: Date,
+    total_amount: number,
     notes: string,
-    orderStatusId: number,
-    createdBy: number,
-    createdAt: Date,
-    updatedBy: number,
-    updatedAt: Date
+    order_status_id: number,
+    created_by: number,
+    created_at: Date,
+    updated_by: number,
+    updated_at: Date
 }
 
 // atributo que es opcional al momento de crear un nuevo Orders
-export interface OrdersCreationAttributes extends Optional<OrdersAttributes, "ordersId" | "notes" | "updatedBy" | "updatedAt"> {}
+export interface OrdersCreationAttributes extends Optional<OrdersAttributes, "orders_id" | "notes" | "updated_by" | "updated_at"> {}
 
 // modelo tipado de Orders
 class OrdersModel extends Model<OrdersAttributes, OrdersCreationAttributes> implements OrdersAttributes {
-    public ordersId!: number
-    public clientsId!: number
-    public orderDate!: Date
-    public deliveryDate!: Date
-    public totalAmount!: number
+    public orders_id!: number
+    public clients_id!: number
+    public order_date!: Date
+    public delivery_date!: Date
+    public total_amount!: number
     public notes!: string
-    public orderStatusId!: number
-    public createdBy!: number
-    public createdAt!: Date
-    public updatedBy!: number
-    public updatedAt!: Date
+    public order_status_id!: number
+    public created_by!: number
+    public created_at!: Date
+    public updated_by!: number
+    public updated_at!: Date
 }
 
 // inicializar el modelo con sus atributos y opciones
 OrdersModel.init({
-    ordersId: {
+    orders_id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true
     },
-    clientsId: {
+    clients_id: {
         type: DataTypes.INTEGER
     },
-    orderDate: {
+    order_date: {
         type: DataTypes.DATE
     },
-    deliveryDate: {
+    delivery_date: {
         type: DataTypes.DATE
     },
-    totalAmount: {
+    total_amount: {
         type: DataTypes.DECIMAL(18,2)
     },
     notes: {
         type: DataTypes.STRING,
         allowNull: true
     },
-    orderStatusId: {
+    order_status_id: {
         type: DataTypes.INTEGER
     },
-    createdBy: {
+    created_by: {
         type: DataTypes.INTEGER
     },
-    createdAt: {
+    created_at: {
         type: DataTypes.DATE
     },
-    updatedBy: {
+    updated_by: {
         type: DataTypes.INTEGER,
         allowNull: true
     },
-    updatedAt: {
+    updated_at: {
         type: DataTypes.DATE,
         allowNull: true
     }

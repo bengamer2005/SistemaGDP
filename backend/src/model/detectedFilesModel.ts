@@ -3,39 +3,39 @@ import DB from "../config/DBconfig"
 
 // atributos que tiene la tabla DetectedFiles
 export interface DetectedFilesAttributes {
-    detectedFileId: number,
-    fileName: string,
-    filePath: string,
+    detected_fileId: number,
+    file_name: string,
+    file_path: string,
     processed: number,
-    processedAt: Date,
-    createdAt: Date
+    processed_at: Date,
+    created_at: Date
 }
 
 // atributo que es opcional al momento de crear un nuevo DetectedFiles
-export interface DetectedFilesCreationAttributes extends Optional<DetectedFilesAttributes, "detectedFileId" | "fileName" | "filePath" | "processedAt" | "processed"> {}
+export interface DetectedFilesCreationAttributes extends Optional<DetectedFilesAttributes, "detected_fileId" | "file_name" | "file_path" | "processed_at" | "processed"> {}
 
 // modelo tipado de DetectedFiles
 class DetectedFilesModel extends Model<DetectedFilesAttributes, DetectedFilesCreationAttributes> implements DetectedFilesAttributes {
-    public detectedFileId!: number
-    public fileName!: string
-    public filePath!: string
+    public detected_fileId!: number
+    public file_name!: string
+    public file_path!: string
     public processed!: number
-    public processedAt!: Date
-    public createdAt!: Date
+    public processed_at!: Date
+    public created_at!: Date
 }
 
 // inicializar el modelo con sus atributos y opciones
 DetectedFilesModel.init({
-    detectedFileId: {
+    detected_fileId: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true
     },
-    fileName: {
+    file_name: {
         type: DataTypes.STRING,
         allowNull: true
     },
-    filePath: {
+    file_path: {
         type: DataTypes.STRING,
         allowNull: true
     },
@@ -43,11 +43,11 @@ DetectedFilesModel.init({
         type: DataTypes.INTEGER,
         allowNull: true
     },
-    processedAt: {
+    processed_at: {
         type: DataTypes.DATE,
         allowNull: true
     },
-    createdAt: {
+    created_at: {
         type: DataTypes.DATE
     }
 }, {

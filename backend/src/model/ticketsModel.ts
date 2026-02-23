@@ -3,47 +3,47 @@ import DB from "../config/DBconfig"
 
 // atributos que tiene la tabla Tickets
 export interface TicketsAttributes {
-    ticketId: number,
-    rawText: string,
-    detectedAt: Date,
+    ticket_id: number,
+    raw_text: string,
+    detected_at: Date,
     status: string,
-    ordersId: number,
-    createdAt: Date
+    orders_id: number,
+    created_at: Date
 }
 
 // atributo que es opcional al momento de crear un nuevo Tickets
-export interface TicketsCreationAttributes extends Optional<TicketsAttributes, "ticketId" | "ordersId" | "rawText"> {}
+export interface TicketsCreationAttributes extends Optional<TicketsAttributes, "ticket_id" | "orders_id" | "raw_text"> {}
 
 // modelo tipado de Tickets
 class TicketsModel extends Model<TicketsAttributes, TicketsCreationAttributes> implements TicketsAttributes {
-    public ticketId!: number
-    public rawText!: string
-    public detectedAt!: Date
+    public ticket_id!: number
+    public raw_text!: string
+    public detected_at!: Date
     public status!: string
-    public ordersId!: number
-    public createdAt!: Date
+    public orders_id!: number
+    public created_at!: Date
 }
 
 // inicializar el modelo con sus atributos y opciones
 TicketsModel.init({
-    ticketId: {
+    ticket_id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true
     },
-    rawText: {
+    raw_text: {
         type: DataTypes.STRING
     },
-    detectedAt: {
+    detected_at: {
         type: DataTypes.DATE
     },
     status: {
         type: DataTypes.INTEGER
     },
-    ordersId: {
+    orders_id: {
         type: DataTypes.INTEGER
     },
-    createdAt: {
+    created_at: {
         type: DataTypes.DATE
     }
 }, {

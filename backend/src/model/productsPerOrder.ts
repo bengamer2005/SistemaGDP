@@ -3,32 +3,32 @@ import DB from "../config/DBconfig"
 
 // atributos que tiene la tabla ProductsPerOrder
 export interface ProductsPerOrderAttributes {
-    productsPerOrderId: number,
-    productsId: number,
-    ordersId: number
+    products_per_order_id: number,
+    products_id: number,
+    orders_id: number
 }
 
 // atributo que es opcional al momento de crear un nuevo ProductsPerOrder
-export interface ProductsPerOrderCreationAttributes extends Optional<ProductsPerOrderAttributes, "ordersId"> {}
+export interface ProductsPerOrderCreationAttributes extends Optional<ProductsPerOrderAttributes, "orders_id"> {}
 
 // modelo tipado de ProductsPerOrder
 class ProductsPerOrderModel extends Model<ProductsPerOrderAttributes, ProductsPerOrderCreationAttributes> implements ProductsPerOrderAttributes {
-    public productsPerOrderId!: number
-    public productsId!: number
-    public ordersId!: number
+    public products_per_order_id!: number
+    public products_id!: number
+    public orders_id!: number
 }
 
 // inicializar el modelo con sus atributos y opciones
 ProductsPerOrderModel.init({
-    productsPerOrderId: {
+    products_per_order_id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true
     },
-    productsId: {
+    products_id: {
         type: DataTypes.INTEGER
     },
-    ordersId: {
+    orders_id: {
         type: DataTypes.INTEGER
     }
 }, {

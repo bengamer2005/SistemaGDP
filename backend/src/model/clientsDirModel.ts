@@ -3,66 +3,66 @@ import DB from "../config/DBconfig"
 
 // atributos que tiene la tabla ClientsDir
 export interface ClientsDirAttributes {
-    clientsDirId: number,
-    clientsId: number,
+    clients_dir_id: number,
+    clients_id: number,
     street: string,
-    exteriorNumber: string,
+    exterior_number: string,
     neighborhood: string,
-    postalCode: string,
+    postal_code: string,
     city: string,
     state: string,
     country: string,
     reference: string,
     active: number,
-    createdBy: number,
-    createdAt: Date,
-    updatedBy: number,
-    updatedAt: Date
+    created_by: number,
+    created_at: Date,
+    updated_by: number,
+    updated_at: Date
 }
 
 // atributo que es opcional al momento de crear un nuevo ClientsDir
-export interface ClientsDirCreationAttributes extends Optional<ClientsDirAttributes, "clientsDirId" | "exteriorNumber"| "postalCode" | "reference" | "updatedBy" | "updatedAt"> {}
+export interface ClientsDirCreationAttributes extends Optional<ClientsDirAttributes, "clients_dir_id" | "exterior_number"| "postal_code" | "reference" | "updated_by" | "updated_at"> {}
 
 // modelo tipado de ClientsDir
 class ClientsDirModel extends Model<ClientsDirAttributes, ClientsDirCreationAttributes> implements ClientsDirAttributes {
-    public clientsDirId!: number
-    public clientsId!: number
+    public clients_dir_id!: number
+    public clients_id!: number
     public street!: string
-    public exteriorNumber!: string
+    public exterior_number!: string
     public neighborhood!: string
-    public postalCode!: string
+    public postal_code!: string
     public city!: string
     public state!: string
     public country!: string
     public reference!: string
     public active!: number
-    public createdBy!: number
-    public createdAt!: Date
-    public updatedBy!: number
-    public updatedAt!: Date
+    public created_by!: number
+    public created_at!: Date
+    public updated_by!: number
+    public updated_at!: Date
 }
 
 // inicializar el modelo con sus atributos y opciones
 ClientsDirModel.init({
-    clientsDirId: {
+    clients_dir_id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true
     },
-    clientsId: {
+    clients_id: {
         type: DataTypes.INTEGER
     },
     street: {
         type: DataTypes.STRING,
     },
-    exteriorNumber: {
+    exterior_number: {
         type: DataTypes.STRING,
         allowNull: true
     },
     neighborhood: {
         type: DataTypes.STRING,
     },
-    postalCode: {
+    postal_code: {
         type: DataTypes.STRING,
         allowNull: true
     },
@@ -82,17 +82,17 @@ ClientsDirModel.init({
     active: {
         type: DataTypes.INTEGER
     },
-    createdBy: {
+    created_by: {
         type: DataTypes.INTEGER
     },
-    createdAt: {
+    created_at: {
         type: DataTypes.DATE
     },
-    updatedBy: {
+    updated_by: {
         type: DataTypes.INTEGER,
         allowNull: true
     },
-    updatedAt: {
+    updated_at: {
         type: DataTypes.DATE,
         allowNull: true
     }
