@@ -3,6 +3,7 @@ import cors from "cors"
 import dotenv from "dotenv"
 dotenv.config()
 import DB from "./config/DBconfig"
+import ClientsRoute from "./routes/clientsRoute"
 
 const env = {
     PORT: Number(process.env.PORT ?? 3006),
@@ -31,6 +32,7 @@ const connectDB = async () => {
 connectDB()
 
 // exponemos los endpoints
+app.use("/sistemagdp/clients", ClientsRoute)
 
 // levantar servidor
 app.listen(env.PORT, env.IP, () => {
