@@ -34,6 +34,10 @@ connectDB()
 // exponemos los endpoints
 app.use("/sistemagdp/clients", ClientsRoute)
 
+// inserts masivos para pruebas de rendimiento
+// import massiveInsert from "./service/massiveInsert"
+// massiveInsert(500000)
+
 // levantar servidor
 app.listen(env.PORT, env.IP, () => {
     console.log(`Servidor corriendo en http://${env.IP}:${env.PORT}`)

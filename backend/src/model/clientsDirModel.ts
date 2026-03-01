@@ -13,7 +13,7 @@ export interface ClientsDirAttributes {
     state: string,
     country: string,
     reference: string,
-    active: number,
+    active: boolean,
     created_by: number,
     created_at: Date,
     updated_by: number,
@@ -21,7 +21,7 @@ export interface ClientsDirAttributes {
 }
 
 // atributo que es opcional al momento de crear un nuevo ClientsDir
-export interface ClientsDirCreationAttributes extends Optional<ClientsDirAttributes, "clients_dir_id" | "exterior_number"| "postal_code" | "reference" | "updated_by" | "updated_at"> {}
+export interface ClientsDirCreationAttributes extends Optional<ClientsDirAttributes, "clients_dir_id" | "exterior_number"| "postal_code" | "reference" | "created_at" | "updated_by" | "updated_at"> {}
 
 // modelo tipado de ClientsDir
 class ClientsDirModel extends Model<ClientsDirAttributes, ClientsDirCreationAttributes> implements ClientsDirAttributes {
@@ -35,7 +35,7 @@ class ClientsDirModel extends Model<ClientsDirAttributes, ClientsDirCreationAttr
     public state!: string
     public country!: string
     public reference!: string
-    public active!: number
+    public active!: boolean
     public created_by!: number
     public created_at!: Date
     public updated_by!: number
@@ -80,7 +80,7 @@ ClientsDirModel.init({
         allowNull: true
     },
     active: {
-        type: DataTypes.INTEGER
+        type: DataTypes.BOOLEAN
     },
     created_by: {
         type: DataTypes.INTEGER
