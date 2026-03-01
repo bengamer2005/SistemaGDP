@@ -6,7 +6,7 @@ export interface ClientsTelAttributes {
     clients_tel_id: number,
     clients_id: number,
     telephone: string,
-    active: number,
+    active: boolean,
     created_by: number,
     created_at: Date,
     updated_by: number,
@@ -14,14 +14,14 @@ export interface ClientsTelAttributes {
 }
 
 // atributo que es opcional al momento de crear un nuevo ClientsTel
-export interface ClientsTelCreationAttributes extends Optional<ClientsTelAttributes, "clients_tel_id" | "updated_at" | "updated_by"> {}
+export interface ClientsTelCreationAttributes extends Optional<ClientsTelAttributes, "clients_tel_id" | "created_at" | "updated_at" | "updated_by"> {}
 
 // modelo tipado de ClientsTel
 class ClientsTelModel extends Model<ClientsTelAttributes, ClientsTelCreationAttributes> implements ClientsTelAttributes {
     public clients_tel_id!: number
     public clients_id!: number
     public telephone!: string
-    public active!: number
+    public active!: boolean
     public created_by!: number
     public created_at!: Date
     public updated_by!: number
@@ -41,7 +41,7 @@ ClientsTelModel.init({
         type: DataTypes.STRING
     },
     active: {
-        type: DataTypes.INTEGER
+        type: DataTypes.BOOLEAN
     },
     created_by: {
         type: DataTypes.INTEGER

@@ -5,7 +5,7 @@ import DB from "../config/DBconfig"
 export interface ClientsAttributes {
     clients_id: number,
     name: string,
-    active: number,
+    active: boolean,
     created_by: number,
     created_at: Date,
     updated_by: number,
@@ -19,7 +19,7 @@ export interface ClientsCreationAttributes extends Optional<ClientsAttributes, "
 class ClientsModel extends Model<ClientsAttributes, ClientsCreationAttributes> implements ClientsAttributes {
     public clients_id!: number
     public name!: string
-    public active!: number
+    public active!: boolean
     public created_by!: number
     public created_at!: Date
     public updated_by!: number
@@ -37,7 +37,7 @@ ClientsModel.init({
         type: DataTypes.STRING,
     },
     active: {
-        type: DataTypes.INTEGER
+        type: DataTypes.BOOLEAN
     },
     created_by: {
         type: DataTypes.INTEGER
