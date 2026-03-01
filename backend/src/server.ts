@@ -35,8 +35,8 @@ connectDB()
 app.use("/sistemagdp/clients", ClientsRoute)
 
 // inserts masivos para pruebas de rendimiento
-import massiveInsert from "./service/massiveInsert"
-massiveInsert(500000)
+// import massiveInsert from "./service/massiveInsert"
+// massiveInsert(500000)
 
 // levantar servidor
 app.listen(env.PORT, env.IP, () => {
