@@ -9,15 +9,11 @@ export interface UsersAttributes {
     email: string,
     password: string,
     role_id: number,
-    active: number,
-    created_by: number,
-    created_at: Date,
-    updated_by: number | null,
-    updated_at: Date | null
+    active: boolean,
 }
 
 // atributo que es opcional al momento de crear un nuevo Users
-export interface UsersCreationAttributes extends Optional<UsersAttributes, "users_id" | "updated_by" | "updated_at"> {}
+export interface UsersCreationAttributes extends Optional<UsersAttributes, "users_id" > {}
 
 // modelo tipado de Users
 class UsersModel extends Model<UsersAttributes, UsersCreationAttributes> implements UsersAttributes {
@@ -27,11 +23,7 @@ class UsersModel extends Model<UsersAttributes, UsersCreationAttributes> impleme
     public email!: string
     public password!: string
     public role_id!: number
-    public active!: number
-    public created_by!: number
-    public created_at!: Date
-    public updated_by!: number | null
-    public updated_at!: Date | null
+    public active!: boolean
 }
 
 // inicializar el modelo con sus atributos y opciones
@@ -58,21 +50,7 @@ UsersModel.init({
         type: DataTypes.INTEGER
     },
     active: {
-        type: DataTypes.INTEGER
-    },
-    created_by: {
-        type: DataTypes.INTEGER
-    },
-    created_at: {
-        type: DataTypes.DATE
-    },
-    updated_by: {
-        type: DataTypes.INTEGER,
-        allowNull: true
-    },
-    updated_at: {
-        type: DataTypes.DATE,
-        allowNull: true
+        type: DataTypes.BOOLEAN
     }
 }, {
     sequelize: DB,

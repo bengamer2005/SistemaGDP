@@ -17,7 +17,7 @@ export interface OrdersAttributes {
 }
 
 // atributo que es opcional al momento de crear un nuevo Orders
-export interface OrdersCreationAttributes extends Optional<OrdersAttributes, "orders_id" | "notes" | "updated_by" | "updated_at"> {}
+export interface OrdersCreationAttributes extends Optional<OrdersAttributes, "orders_id" | "delivery_date" | "notes" | "created_at" | "updated_by" | "updated_at"> {}
 
 // modelo tipado de Orders
 class OrdersModel extends Model<OrdersAttributes, OrdersCreationAttributes> implements OrdersAttributes {
@@ -48,10 +48,12 @@ OrdersModel.init({
         type: DataTypes.DATE
     },
     delivery_date: {
-        type: DataTypes.DATE
+        type: DataTypes.DATE,
+        allowNull: true
     },
     total_amount: {
-        type: DataTypes.DECIMAL(18,2)
+        type: DataTypes.DECIMAL(18,2),
+        defaultValue: 0
     },
     notes: {
         type: DataTypes.STRING,
@@ -64,7 +66,8 @@ OrdersModel.init({
         type: DataTypes.INTEGER
     },
     created_at: {
-        type: DataTypes.DATE
+        type: DataTypes.DATE,
+        defaultValue: DataTypes.NOW
     },
     updated_by: {
         type: DataTypes.INTEGER,

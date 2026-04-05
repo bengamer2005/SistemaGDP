@@ -5,7 +5,7 @@ import DB from "../config/DBconfig"
 export interface OrderStatusHistoryAttributes {
     order_status_history_id: number,
     orders_id: number,
-    orders_status_id: number,
+    order_status_id: number,
     previous_status_id: number | null,
     changed_by: number,
     changed_at: Date,
@@ -13,13 +13,13 @@ export interface OrderStatusHistoryAttributes {
 }
 
 // atributo que es opcional al momento de crear un nuevo OrderStatusHistory
-export interface OrderStatusHistoryCreationAttributes extends Optional<OrderStatusHistoryAttributes, "order_status_history_id" | "previous_status_id" | "notes"> {}
+export interface OrderStatusHistoryCreationAttributes extends Optional<OrderStatusHistoryAttributes, "order_status_history_id"| "changed_at" | "notes"> {}
 
 // modelo tipado de OrderStatusHistory
 class OrderStatusHistoryModel extends Model<OrderStatusHistoryAttributes, OrderStatusHistoryCreationAttributes> implements OrderStatusHistoryAttributes {
     public order_status_history_id!: number
     public orders_id!: number
-    public orders_status_id!: number
+    public order_status_id!: number
     public previous_status_id!: number | null
     public changed_by!: number
     public changed_at!: Date
@@ -36,7 +36,7 @@ OrderStatusHistoryModel.init({
     orders_id: {
         type: DataTypes.INTEGER
     },
-    orders_status_id: {
+    order_status_id: {
         type: DataTypes.INTEGER
     },
     previous_status_id: {
