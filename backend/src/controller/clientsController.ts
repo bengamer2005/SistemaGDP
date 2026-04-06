@@ -4,6 +4,7 @@ import ClientsModel from "../model/clientsModel"
 import ClientsDirModel from "../model/clientsDirModel"
 import ClientsTelModel from "../model/clientsTelModel"
 
+// types
 type ClientResponse = {
     clientsId: number
     name: string
@@ -109,13 +110,17 @@ export const createClient = async (req: Request, res: Response) => {
     const transaction = await DB.transaction()
 
     try {
-        const newClient = await ClientsModel.create({ name: body.name.trim(), active: true, created_by: 1 }, { transaction })
+        const newClient = await ClientsModel.create({ 
+            name: body.name.trim(), 
+            active: true, 
+            created_by: req.user?.id 
+        }, { transaction })
 
         if(address) {
             await ClientsDirModel.create({
                 clients_id: newClient.clients_id,
                 active: true,
-                created_by: 1,
+                created_by: req.user?.id,
                 ...address
             }, {
                 transaction
@@ -127,7 +132,7 @@ export const createClient = async (req: Request, res: Response) => {
                 await ClientsTelModel.create({
                     clients_id: newClient.clients_id,
                     telephone: tel.telephone,
-                    created_by: 1,
+                    created_by: req.user?.id,
                     active: true
                 }, {
                     transaction
@@ -186,7 +191,7 @@ export const updateClient = async (req: Request, res: Response) => {
                     await ClientsTelModel.create({
                         clients_id: body.clientsId,
                         telephone: tel.telephone,
-                        created_by: 1,
+                        created_by: req.user?.id,
                         active: true
                     }, {
                         transaction
@@ -202,5 +207,25 @@ export const updateClient = async (req: Request, res: Response) => {
         await transaction.rollback()
         console.error("Error al actualizar el cliente:", error)
         res.status(500).json({ error: "Error al actualizar el cliente" })
+    }
+}
+
+export const deleteClient = async (req: Request, res: Response) => {
+    const { clientId } = req.params
+
+    const transaction = await DB.transaction()
+
+    try {
+        await ClientsModel.update({ active: false }, { where: { clients_id: clientId }, transaction })
+        await ClientsDirModel.update({ active: false }, { where: { clients_id: clientId }, transaction })
+        await ClientsTelModel.update({ active: false }, { where: { clients_id: clientId }, transaction })
+
+        await transaction.commit()
+
+        res.json({ message: "Cliente eliminado exitosamente" })
+    } catch (error) {
+        await transaction.rollback()
+        console.error("Error al eliminar el cliente:", error)
+        res.status(500).json({ error: "Error al eliminar el cliente" })
     }
 }
