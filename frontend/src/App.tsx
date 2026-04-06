@@ -1,8 +1,10 @@
 import { BrowserRouter, Route, Routes } from "react-router"
 import { Toaster } from "sonner"
+import ProtectedRoute from "./shared/components/layout/protectedRoute"
 // pages
-import MainPage from "./pages/mainPage"
-import NotFound from "./pages/404Page"
+import Loging from "./features/auth/loginPage"
+import MainPage from "./features/mainPage"
+import NotFound from "./shared/404Page"
 // estilos
 import "./index.css"
 
@@ -11,13 +13,16 @@ function App() {
         <>
             <BrowserRouter>
                 <Routes>
-                    <Route path="/" element={<MainPage/>}/>
+                    <Route path="/" element={<Loging/>}/>
                     <Route path="*" element={<NotFound/>}/>
+                    <Route element={<ProtectedRoute/>}>
+                        <Route path="/main" element={<MainPage/>}/>
+                    </Route>
                 </Routes>
             </BrowserRouter>
 
             <Toaster 
-                position="top-right"
+                position="bottom-right"
                 expand={false}
                 richColors
                 closeButton
