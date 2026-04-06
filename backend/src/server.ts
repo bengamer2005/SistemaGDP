@@ -4,6 +4,9 @@ import dotenv from "dotenv"
 dotenv.config()
 import DB from "./config/DBconfig"
 import ClientsRoute from "./routes/clientsRoute"
+import UsersRoute from "./routes/usersRoute"
+import ProductsRoute from "./routes/productsRoute"
+import OrdersRoute from "./routes/ordersRoute"
 
 const env = {
     PORT: Number(process.env.PORT ?? 3006),
@@ -32,11 +35,15 @@ const connectDB = async () => {
 connectDB()
 
 // exponemos los endpoints
-app.use("/sistemagdp/clients", ClientsRoute)
+app.use("/sistemagdp/api", ClientsRoute)
+app.use("/sistemagdp/api", UsersRoute)
+app.use("/sistemagdp/api", ProductsRoute)
+app.use("/sistemagdp/api", OrdersRoute)
 
 // inserts masivos para pruebas de rendimiento
 // import massiveInsert from "./service/massiveInsert"
-// massiveInsert(500000)
+// massiveInsert(150000)
+// massiveInsert(53634)
 
 // levantar servidor
 app.listen(env.PORT, env.IP, () => {
