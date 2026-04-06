@@ -1,5 +1,5 @@
 import { Router } from "express"
-import { getAllProducts, createProducts, bulkCreateProducts, updateProducts } from "../controller/productsController"
+import { getAllProducts, createProducts, bulkCreateProducts } from "../controller/productsController"
 import authUser from "../middleware/authUser"
 import { upload } from "../middleware/upload"
 
