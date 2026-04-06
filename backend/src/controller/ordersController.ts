@@ -1,12 +1,10 @@
 import { Request, Response } from "express"
 import { Sequelize, QueryTypes } from "sequelize"
 import DB from "../config/DBconfig"
-// models
 import OrdersModel from "../model/ordersModel"
 import ProductsPerOrderModel from "../model/productsPerOrder"
 import OrderStatusModel from "../model/orderStatus"
 import OrderStatusHistoryModel from "../model/orderStatusHistory"
-import ProductsModel from "../model/productsModel"
 
 // types
 type OrderProduct = {
@@ -53,23 +51,6 @@ export const getAllOrders = async (req: Request, res: Response) => {
         res.status(200).json(allOrders)
     } catch (error) {
         console.error("Error al obtener pedidos:", error)
-        res.status(500).json({ error: "Error al obtener pedidos" })
-    }
-}
-
-// llama a un solo pedido por id
-export const getOrderById = async (req: Request, res: Response) => {
-    try {
-        const id = req.params.id
-
-        const getOrder = await DB.query("SELECT * FROM xv_all_orders WHERE orders_id = :orders_id", {
-            replacements: { orders_id: id },
-            type: QueryTypes.SELECT
-        })
-
-        res.status(200).json(getOrder)
-    } catch (error) {
-        console.error("Error al un pedido:", error)
         res.status(500).json({ error: "Error al obtener pedidos" })
     }
 }
