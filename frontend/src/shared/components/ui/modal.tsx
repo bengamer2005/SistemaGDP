@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { XCircle, Save, Phone, MapPin } from "lucide-react"
 import { useCreateClient, useDeleteClient } from "../../../features/clients/hooks/useAllClientsService"
-import type { Clients, CreateClients } from "../../../features/clients/types/clientsTypes"
+import type { Clients } from "../../../features/clients/types/clientsTypes"
 
 type ModalMode = "view" | "edit" | "create"
 
@@ -14,7 +14,7 @@ interface ClientModalProps {
     onDeactivate?: (clientId: number) => void
 }
 
-const ClientModal: React.FC<ClientModalProps> = ({ mode, client, isOpen, onClose, onSave, onDeactivate }) => {
+const ClientModal: React.FC<ClientModalProps> = ({ mode, client, isOpen, onClose }) => {
     const [formData, setFormData] = useState<Partial<Clients>>({
         name: "",
         telephones: [],
@@ -104,7 +104,7 @@ const ClientModal: React.FC<ClientModalProps> = ({ mode, client, isOpen, onClose
     const { mutate } = useCreateClient()
 
     const handleSave = () => {
-        const clientData: CreateClients = {
+        const clientData: any = {
             ...formData,
             modalMode: mode,
             telephones: phones.filter(p => p.trim() !== "").map((tel, i) => ({ 
