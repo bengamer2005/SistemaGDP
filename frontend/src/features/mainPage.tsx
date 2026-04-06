@@ -13,7 +13,7 @@ const MainPage: React.FC = () => {
     const getPageTitle = () => {
         switch (activeTab) {
             case "dashboard":
-                return "Sistema Gestor de Pedidos"
+                return "Dashboard"
             case "orders":
                 return "Pedidos"
             case "clients":
