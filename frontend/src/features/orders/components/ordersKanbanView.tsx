@@ -1,4 +1,4 @@
-import { useState, useRef } from "react"
+import { useRef } from "react"
 import { Package, MapPin } from "lucide-react"
 import type { Order } from "../types/ordersTypes"
 
@@ -23,7 +23,6 @@ const columns: Column[] = [
 ]
 
 const OrderKanbanView = ({ orders, onOrderClick }: OrderKanbanViewProps) => {
-    const [scrollPosition, setScrollPosition] = useState(0)
     const kanbanRef = useRef<HTMLDivElement>(null)
 
     const getOrdersByStatus = (statusId: number) => {
@@ -52,7 +51,6 @@ const OrderKanbanView = ({ orders, onOrderClick }: OrderKanbanViewProps) => {
             <div
                 ref={kanbanRef}
                 className="flex gap-6 overflow-x-auto scrollbar-hide pb-4 items-start"
-                onScroll={(e) => setScrollPosition(e.currentTarget.scrollLeft)}
             >
                 {columns.map((column) => {
                     const columnOrders = getOrdersByStatus(column.status_id)
