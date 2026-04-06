@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import SideNavbar from "../shared/components/layout/sideNavbar"
 import Header from "../shared/components/layout/header"
 // componentes
-import ReportComponent from "./reports/components/reportComponent"
+import ReportComponent from "./reports/reportMain"
 import ClientsComponent from "./clients/components/clientsComponent"
 import ProductsMain from "./products/productsMain"
 import OrdersMain from "./orders/ordersMain"
