@@ -173,12 +173,3 @@ export const bulkCreateProducts = async (req: Request, res: Response) => {
         res.status(500).json({ error: "Error al cargar productos" })
     }
 }
-
-// actualiza un producto
-export const updateProducts = async (req: Request, res: Response) => {
-    try {
-        
-    } catch (error) {
-        
-    }
-}
