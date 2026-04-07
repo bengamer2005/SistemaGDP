@@ -2,13 +2,13 @@ version: "3.9"
 
 services:
   backend:
-    build: ./backend
+    image: bengamer2005/sistemagdp-backend:latest
     ports:
       - "3006:3006"
     env_file:
       - ./backend/.env
 
   frontend:
-    build: ./frontend
+    image: bengamer2005/sistemagdp-frontend:latest
     ports:
       - "8080:80"
