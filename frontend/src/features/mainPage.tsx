@@ -27,6 +27,8 @@ const MainPage: React.FC = () => {
         }
     }
 
+    console.log("se actualio corredctamente el main page con el CI/CD")
+
     return (
         <div className="flex min-h-screen bg-[#F5F7FA]">
             {/* Sidebar */}
