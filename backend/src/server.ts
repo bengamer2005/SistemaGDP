@@ -20,7 +20,8 @@ const app = express()
 app.use(express.json())
 
 app.use(cors({
-  origin: process.env.FRONTEND
+//   origin: process.env.FRONTEND
+    origin: "*" // desarrollo
 }))
 
 // conectamos la DB

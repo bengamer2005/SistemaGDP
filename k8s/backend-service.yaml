@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: sistemagdp-backend-service
+spec:
+  type: ClusterIP
+  selector:
+    app: sistemagdp-backend
+  ports:
+    - port: 3006
+      targetPort: 3006

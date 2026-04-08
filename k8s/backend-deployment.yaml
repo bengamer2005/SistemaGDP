@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sistemagdp-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sistemagdp-backend
+  template:
+    metadata:
+      labels:
+        app: sistemagdp-backend
+    spec:
+      containers:
+        - name: sistemagdp-backend
+          image: backend-app:1.0
+          ports:
+            - containerPort: 3006
+          envFrom:
+            - secretRef:
+                name: sistemagdp-backend-secret
+            - configMapRef:
+                name: sistemagdp-backend-config
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "100m"
+            limits:
+              memory: "256Mi"
+              cpu: "200m"
