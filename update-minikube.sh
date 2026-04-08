@@ -8,16 +8,16 @@ echo "Configurando Docker para Minikube..."
 eval $(minikube docker-env)
 
 # Construir la imagen frontend con la variable de entorno
-echo "Construyendo frontend-app:4.2 con VITE_API_URL=/api..."
+echo "Construyendo frontend-app:5.1 con VITE_API_URL=/api..."
 docker build \
   --no-cache \
   --build-arg VITE_API_URL=/api \
-  -t frontend-app:4.2 ./frontend
+  -t frontend-app:5.1 ./frontend
 
 # Actualizar el deployment en Kubernetes
 echo "Actualizando deployment sistemagdp-frontend..."
 kubectl set image deployment/sistemagdp-frontend \
-  sistemagdp-frontend=frontend-app:4.2
+  sistemagdp-frontend=frontend-app:5.1
 kubectl rollout status deployment/sistemagdp-frontend
 
 # Abrir el servicio en Minikube
