@@ -6,4 +6,4 @@ data:
   PORT: "3006"
   IP: "0.0.0.0"
   FRONTEND: "http://sistemagdp-frontend-service:80"
-  BACKEND: "http://localhost:3006"
+  BACKEND: "http://sistemagdp-backend-service:3006"

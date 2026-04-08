@@ -14,7 +14,8 @@ spec:
     spec:
       containers:
         - name: sistemagdp-backend
-          image: backend-app:1.0
+          image: backend-app:1.1
+          imagePullPolicy: Never
           ports:
             - containerPort: 3006
           envFrom:

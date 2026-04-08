@@ -7,5 +7,5 @@ spec:
   selector:
     app: sistemagdp-backend
   ports:
-    - port: 3006
+    - port: 80
       targetPort: 3006
