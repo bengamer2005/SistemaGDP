@@ -1,0 +1,27 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: sistemagdp-ingress
+  annotations:
+    kubernetes.io/ingress.class: nginx
+spec:
+  rules:
+    - host: {{ .Values.ingress.host | default "sistemagdp.local" }}
+      http:
+        paths:
+          # frontend en /
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: sistemagdp-frontend-service
+                port:
+                  number: 80
+          # backend en /api
+          - path: /api
+            pathType: Prefix
+            backend:
+              service:
+                name: sistemagdp-backend-service
+                port:
+                  number: 80

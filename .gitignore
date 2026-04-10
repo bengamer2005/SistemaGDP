@@ -1,3 +1,4 @@
 DB.sql
 update-local.sh
 k8s/backend-secrets.yaml
+sistemagdp-chart/values.yaml

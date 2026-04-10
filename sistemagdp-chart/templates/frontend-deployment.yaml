@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sistemagdp-frontend
+spec:
+  replicas: {{ .Values.replicaCount.frontend }}
+  selector:
+    matchLabels:
+      app: sistemagdp-frontend
+  template:
+    metadata:
+      labels:
+        app: sistemagdp-frontend
+    spec:
+      containers:
+        - name: sistemagdp-frontend
+          image: "{{ .Values.image.frontend.repository }}:{{ .Values.image.frontend.tag }}"
+          ports:
+            - containerPort: {{ .Values.service.frontendPort }}
