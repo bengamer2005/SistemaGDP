@@ -152,56 +152,59 @@ export const createClient = async (req: Request, res: Response) => {
 
 export const updateClient = async (req: Request, res: Response) => {
     const body: Client = req.body
-
     const address = body.address
     const telephones = body.telephones
-
     const transaction = await DB.transaction()
 
     try {
-        await ClientsModel.update({ name: body.name.trim() }, { where: { clients_id: body.clientsId }, transaction })
-                    
-        if(address) {
-            await ClientsDirModel.update({ ...address }, { where: { clients_id: body.clientsId }, transaction })
-        }
-
-        const allClientTel = await ClientsTelModel.findAll({ raw: true, where: { clients_id: body.clientsId, active: true }, transaction })
-        
-        // sacamos los telefonos que no vengan en el body
-        const telToInactiveMap = new Map<number, any>()
-
-        const telToInactive = allClientTel.filter(dbTel =>
-            !telephones.some(bodyTel => bodyTel.clients_tel_id === dbTel.clients_tel_id)
+        await ClientsModel.update(
+            { name: body.name.trim() },
+            { where: { clients_id: body.clientsId }, transaction }
         )
 
-        for (const tel of telToInactive) {
-            await ClientsTelModel.update({ active: false }, { where: { clients_tel_id: tel.clients_tel_id }, transaction })
+        if (address) {
+            await ClientsDirModel.update(
+                { ...address },
+                { where: { clients_id: body.clientsId }, transaction }
+            )
         }
 
-        // inactivamos los telefonos que no vienen en el body
-        for(const [telId, tel] of telToInactiveMap) {
-            await ClientsTelModel.update({ active: false }, { where: { clients_tel_id: telId }, transaction })
+        const allClientTel = await ClientsTelModel.findAll({
+            raw: true,
+            where: { clients_id: body.clientsId, active: true },
+            transaction
+        })
+
+        const telIdsToDelete = allClientTel
+            .filter(dbTel => !telephones.some(bodyTel => bodyTel.clients_tel_id === dbTel.clients_tel_id))
+            .map(dbTel => dbTel.clients_tel_id)
+
+        if (telIdsToDelete.length) {
+            await ClientsTelModel.destroy({
+                where: { clients_tel_id: telIdsToDelete },
+                transaction
+            })
         }
 
-        if(telephones?.length) {
+        if (telephones?.length) {
             for (const tel of telephones) {
-                if(tel.clients_tel_id) {
-                    await ClientsTelModel.update({ telephone: tel.telephone }, { where: { clients_tel_id: tel.clients_tel_id }, transaction })
+                if (tel.clients_tel_id) {
+                    await ClientsTelModel.update(
+                        { telephone: tel.telephone },
+                        { where: { clients_tel_id: tel.clients_tel_id }, transaction }
+                    )
                 } else {
                     await ClientsTelModel.create({
                         clients_id: body.clientsId,
                         telephone: tel.telephone,
                         created_by: req.user?.id,
                         active: true
-                    }, {
-                        transaction
-                    })
+                    }, { transaction })
                 }
             }
         }
 
         await transaction.commit()
-    
         res.json({ message: "Cliente actualizado exitosamente" })
     } catch (error) {
         await transaction.rollback()
